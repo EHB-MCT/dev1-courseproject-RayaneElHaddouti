@@ -39,38 +39,48 @@ drawBackground();
 
 // Then, add the text
 drawCenteredText();
-// Define a single snowflake
-let snowflake = {
-	x: canvas.width / 2, // Center of the screen
-	y: 0, // Start at the top
-	size: 10, // Fixed size
-	speed: 2, // Falls at a fixed speed
+// Create multiple snowflakes
+let snowflakes = [];
+let snowflakeCount = 50;
+
+// Populate the snowflake array
+for (let i = 0; i < snowflakeCount; i++) {
+	snowflakes.push({
+		x: Math.random() * canvas.width, // Random horizontal position
+		y: Math.random() * canvas.height, // Random vertical position
+		size: Math.random() * 8 + 4, // Random size
+		speed: Math.random() * 2 + 1, // Random speed
+	});
+}
+
+// Draw all snowflakes
+let drawSnowflakes = () => {
+	snowflakes.forEach((snowflake) => {
+		context.beginPath();
+		context.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
+		context.fillStyle = "white";
+		context.fill();
+	});
 };
 
-// Draw the snowflake
-let drawSnowflake = () => {
-	context.beginPath();
-	context.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
-	context.fillStyle = "white";
-	context.fill();
+// Update all snowflakes
+let updateSnowflakes = () => {
+	snowflakes.forEach((snowflake) => {
+		snowflake.y += snowflake.speed; // Move down
+		if (snowflake.y > canvas.height) {
+			snowflake.y = 0; // Reset to top
+		}
+	});
 };
 
-// Update snowflake position
-let updateSnowflake = () => {
-	snowflake.y += snowflake.speed; // Move down
-	if (snowflake.y > canvas.height) {
-		snowflake.y = 0; // Reset to top
-	}
-};
-
-// Animation loop
+// Modify the animation loop
 let animate = () => {
-	drawBackground(); // Redraw background
-	drawCenteredText(); // Redraw text
-	updateSnowflake(); // Update snowflake position
-	drawSnowflake(); // Draw the snowflake
-	requestAnimationFrame(animate); // Loop
+	drawBackground();
+	drawCenteredText();
+	updateSnowflakes();
+	drawSnowflakes();
+	requestAnimationFrame(animate);
 };
 
-// Start the animation
+// Restart the animation
 animate();
