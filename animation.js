@@ -22,7 +22,7 @@ class Snowflake {
 		this.y = Math.random() * canvas.height; // Random starting y position
 		this.size = Math.random() * 8 + 4; // Bigger sizes between 4px and 12px
 		this.baseSpeed = Math.random() * 1 + 1; // Base fall speed
-		this.speedX = 0; // Horizontal speed
+		this.speedX = 2; // Horizontal speed
 		this.shape = "circle"; // Default shape
 		this.color = this.getColorBasedOnPosition(); // Initial color
 		this.opacity = Math.random() * 0.7 + 0.3; // Random transparency (0.3 - 1.0)
@@ -68,7 +68,7 @@ class Snowflake {
 
 // Initialize snowflake array
 let snowflakes = [];
-let snowflakeCount = 100;
+let snowflakeCount = 200;
 
 // Populate snowflake array
 for (let i = 0; i < snowflakeCount; i++) {
