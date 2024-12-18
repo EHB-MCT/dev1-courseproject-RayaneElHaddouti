@@ -39,3 +39,38 @@ drawBackground();
 
 // Then, add the text
 drawCenteredText();
+// Define a single snowflake
+let snowflake = {
+	x: canvas.width / 2, // Center of the screen
+	y: 0, // Start at the top
+	size: 10, // Fixed size
+	speed: 2, // Falls at a fixed speed
+};
+
+// Draw the snowflake
+let drawSnowflake = () => {
+	context.beginPath();
+	context.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
+	context.fillStyle = "white";
+	context.fill();
+};
+
+// Update snowflake position
+let updateSnowflake = () => {
+	snowflake.y += snowflake.speed; // Move down
+	if (snowflake.y > canvas.height) {
+		snowflake.y = 0; // Reset to top
+	}
+};
+
+// Animation loop
+let animate = () => {
+	drawBackground(); // Redraw background
+	drawCenteredText(); // Redraw text
+	updateSnowflake(); // Update snowflake position
+	drawSnowflake(); // Draw the snowflake
+	requestAnimationFrame(animate); // Loop
+};
+
+// Start the animation
+animate();
