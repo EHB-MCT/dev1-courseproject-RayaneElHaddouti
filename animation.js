@@ -25,3 +25,17 @@ let drawBackground = () => {
 
 // Call the background function
 drawBackground();
+// Draw centered text
+let drawCenteredText = () => {
+	context.fillStyle = "#ffffff"; // White color
+	context.font = "bold 48px Arial";
+	context.textAlign = "center";
+	context.textBaseline = "middle";
+	context.fillText("Rayane El Haddouti", canvas.width / 2, canvas.height / 2);
+};
+
+// First, draw the background again
+drawBackground();
+
+// Then, add the text
+drawCenteredText();
